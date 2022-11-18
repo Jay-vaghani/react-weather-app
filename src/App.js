@@ -4,6 +4,7 @@ import './App.css'
 import CurrentWether from './components/current-weather/current-weather';
 import { TEMPERATURE_UNIT, WEATHER_API_KEY, WEATHER_API_URL } from './api';
 import axios from 'axios';
+import Forecast from './components/forecast/Forecast';
 
 function App() {
 
@@ -21,7 +22,7 @@ function App() {
     const CurrentWetherFetch = axios.get(`${WEATHER_API_URL}/weather?lat=${lat}&lon=${log}&appid=${WEATHER_API_KEY}&${TEMPERATURE_UNIT}`).then((response) => {
       setCurrentWeather({
         city: searchData.label,
-        ...response.data.main
+        ...response
       })
     }).catch((error) => {
       console.log(error)
@@ -31,7 +32,7 @@ function App() {
 
       setForecast({
         city: searchData.label,
-        ...response.data.list
+        ...response
       })
     }).catch((error) => {
       console.log(error)
@@ -44,7 +45,8 @@ function App() {
   return (
     <div className='container'>
       <Search onSearchChange={handleOnSearchChange} />
-      <CurrentWether />
+      {currentWeather && <CurrentWether currentWeatherData={currentWeather}/>}
+      <Forecast />
     </div>
   );
 }

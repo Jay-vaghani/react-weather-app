@@ -1,38 +1,38 @@
 import './current-weather.css'
 
 
-const CurrentWether = () => {
+const CurrentWether = ({currentWeatherData}) => {
     return (
         <>
             <div className="weather">
                 <div className="top">
                     <div>
-                        <p className='city'>Delhi</p>
-                        <p className='weather-description'>Sunny</p>
+                        <p className='city'>{currentWeatherData.city}</p>
+                        <p className='weather-description'>{currentWeatherData.data.weather[0].description}</p>
                     </div>
-                    <img src="icons/01d.png" alt="Weather" className='weather-icon' />
+                    <img src={`icons/${currentWeatherData.data.weather[0].icon}.png`} alt="Weather" className='weather-icon' />
                 </div>
                 <div className="bottom">
-                    <p className="temperature">18°C</p>
+                    <p className="temperature">{Math.round(currentWeatherData.data.main.temp)}°C</p>
                     <div className="details">
                         <div className="parameter-row ">
                             <span className="parameter-label details">Details</span>
                         </div>
                         <div className="parameter-row">
                             <span className="parameter-label">Feels Like</span>
-                            <span className="parameter-value">22C°</span>
+                            <span className="parameter-value">{Math.round(currentWeatherData.data.main.feels_like)}°C</span>
                         </div>
                         <div className="parameter-row">
                             <span className="parameter-label">Wind</span>
-                            <span className="parameter-value">2 m/s</span>
+                            <span className="parameter-value">{Math.round(currentWeatherData.data.wind.speed)} m/s</span>
                         </div>
                         <div className="parameter-row">
                             <span className="parameter-label">Humidity</span>
-                            <span className="parameter-value">15 %</span>
+                            <span className="parameter-value">{Math.round(currentWeatherData.data.main.humidity)} %</span>
                         </div>
                         <div className="parameter-row">
                             <span className="parameter-label">Pressure</span>
-                            <span className="parameter-value">15 hPa</span>
+                            <span className="parameter-value">{Math.round(currentWeatherData.data.main.pressure)} hPa</span>
                         </div>
                     </div>
                 </div>

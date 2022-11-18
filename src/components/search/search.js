@@ -37,7 +37,7 @@ function Search({ onSearchChange }) {
     <div>
       <AsyncPaginate
         placeholder='Search For City'
-        debounceTimeout={1000}
+        debounceTimeout={600}
         value={search}
         onChange={handleOnChange}
         loadOptions={loadOptions}
